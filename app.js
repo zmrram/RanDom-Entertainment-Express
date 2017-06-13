@@ -12,7 +12,7 @@ const passport = require('passport');
 var app = express();
 
 //set view engine
-app.set('views', path.join(__dirname + 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // parse application/x-www-form-urlencoded 
@@ -61,10 +61,10 @@ app.use(function(req, res, next) {
 });
 
 //get route files
-
+var index = require('./routes/index');
 
 //set up route middleware
-
+app.use('/', index);
 
 //start server
 app.listen(3000, function(err) {
