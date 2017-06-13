@@ -7,6 +7,7 @@ const expressValidator = require('express-validator');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+var cookieParser = require('cookie-parser');
 
 //init mongoDB 
 var mongodb = require('./config/database');
@@ -31,12 +32,14 @@ app.use(bodyParser.json());
 //set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+//set express-cookie
+app.use(cookieParser('keyboard cat'));
 //set express-session middleware
+
 app.use(session({
-    secret: 'secret',
+    secret: 'keyboard cat',
     resave: true,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    saveUninitialized: true
 }))
 
 //set express validator middleware
