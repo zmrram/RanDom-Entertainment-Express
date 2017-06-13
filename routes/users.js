@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcryptjs');
 
 var User = require('../models/user');
 
@@ -35,14 +36,21 @@ router.post('/register', function(req, res) {
                         email: req.body.email,
                         name: req.body.name
                     });
-                    newUser.save(function(err) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            req.flash({ 'success_msg': 'Account created!' });
-                            res.render('login');
-                        }
+                    var bcrypt = require('bcryptjs');
+                    bcrypt.genSalt(10, function(err, salt) {
+                        bcrypt.hash(req.body.password, salt, function(err, hash) {
+                            newUser.password = hash;
+                            newUser.save(function(err) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    req.flash({ 'success_msg': 'Account created!' });
+                                    res.render('login');
+                                }
+                            });
+                        });
                     });
+
                 }
             }
         });
