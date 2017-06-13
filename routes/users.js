@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
-
+var passport = require('passport');
 var User = require('../models/user');
 
 router.get('/register', function(req, res) {
@@ -65,4 +65,20 @@ router.post('/register', function(req, res) {
 router.get('/login', function(req, res) {
     res.render('login');
 });
+
+router.post('/login', function(req, res, next) {
+    req.checkBody('username', 'Username is required').notEmpty();
+    req.checkBody('password', 'Password is required').notEmpty();
+    var errors = req.validationErrors();
+    if (errors) {
+        res.render('login', { errors: errors });
+    } else {
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+    }
+});
+
 module.exports = router;

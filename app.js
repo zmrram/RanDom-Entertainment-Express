@@ -63,6 +63,11 @@ app.use(expressValidator({
 //set flash middleware
 app.use(flash());
 
+//set up passport middleware
+require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 //set global variables 
 app.use(function(req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
