@@ -62,9 +62,11 @@ app.use(function(req, res, next) {
 
 //get route files
 var index = require('./routes/index');
+var users = require('./routes/users');
 
 //set up route middleware
 app.use('/', index);
+app.use('/users', users);
 
 //start server
 app.listen(3000, function(err) {
