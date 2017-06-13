@@ -8,6 +8,14 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 
+//init mongoDB 
+var mongodb = require('./config/database');
+mongoose.connect(mongodb.database);
+mongoose.connection.once('open', function(e) {
+    console.log('Connected to MongoDB...');
+}).on('error', function(err) {
+    console.log(err);
+});
 //init express app
 var app = express();
 

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var User = require('../models/user');
+
 router.get('/register', function(req, res) {
     res.render('register');
 });
@@ -15,6 +17,35 @@ router.post('/register', function(req, res) {
     var errors = req.validationErrors();
     if (errors) {
         res.render('register', { errors: errors });
+    } else {
+        var query = {
+            username: req.body.username
+        };
+        User.findOne(query, function(err, otherUser) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (otherUser) {
+                    req.flash({ 'error_msg': 'Username already exist!' });
+                    res.render('register');
+                } else {
+                    var newUser = new User({
+                        username: req.body.username,
+                        password: req.body.password,
+                        email: req.body.email,
+                        name: req.body.name
+                    });
+                    newUser.save(function(err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            req.flash({ 'success_msg': 'Account created!' });
+                            res.render('login');
+                        }
+                    });
+                }
+            }
+        });
     }
 });
 
