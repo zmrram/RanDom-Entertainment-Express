@@ -1,23 +1,37 @@
 {
-  "name": "randomentertainment-express",
-  "version": "1.0.0",
-  "description": "Recommend a random entertainment to the user, could be a book, a movie, a cooking recipe, a place to eat etc... And the recommendation could be based on use's profiles.",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zmrram/RanDom-Entertainment-Express.git"
-  },
-  "keywords": [
-    "random",
-    "recommender"
-  ],
-  "author": "Tin Huynh",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zmrram/RanDom-Entertainment-Express/issues"
-  },
-  "homepage": "https://github.com/zmrram/RanDom-Entertainment-Express#readme"
+    "name": "randomentertainment-express",
+    "version": "1.0.0",
+    "description": "Recommend a random entertainment to the user, could be a book, a movie, a cooking recipe, a place to eat etc... And the recommendation could be based on use's profiles.",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zmrram/RanDom-Entertainment-Express.git"
+    },
+    "keywords": [
+        "random",
+        "recommender"
+    ],
+    "author": "Tin Huynh",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/zmrram/RanDom-Entertainment-Express/issues"
+    },
+    "homepage": "https://github.com/zmrram/RanDom-Entertainment-Express#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.17.2",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.3",
+        "ejs": "^2.5.6",
+        "express": "^4.15.3",
+        "express-messages": "^1.0.1",
+        "express-session": "^1.15.3",
+        "express-validator": "^3.2.0",
+        "mongoose": "^4.10.5",
+        "passport": "^0.3.2",
+        "passport-local": "^1.0.0"
+    }
 }
