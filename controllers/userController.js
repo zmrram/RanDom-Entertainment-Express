@@ -76,3 +76,16 @@ module.exports.user_logout = function(req, res) {
     req.flash('success_msg', 'Successfully logged out!');
     res.redirect('login');
 }
+
+module.exports.user_setting = function(req, res) {
+    User.findOne({ username: req.user.username }, function(err, result) {
+        if (req.query.Action === 'changeEmail') {
+            if (req.body.old_password === '') {
+
+            }
+        }
+        if (req.query.Action === 'changePassword') {
+
+        }
+    });
+}

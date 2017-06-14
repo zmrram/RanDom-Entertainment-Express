@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var accessControle = require('../config/accesscontrol');
 
 var user_controller = require('../controllers/userController');
 router.get('/register', function(req, res) {
@@ -19,19 +18,18 @@ router.get('/setting', ensureAuthenticated, function(req, res) {
     res.render('setting')
 });
 
-router.post('/setting', function(req, res) {
-    User.findOne({ username: req.user.username }, function(err, result) {
-        if (req.query.Action === 'changeEmail') {
-            if (req.body.old_password === '') {
-
-            }
-        }
-        if (req.query.Action === 'changePassword') {
-
-        }
-    });
-});
+router.post('/setting', user_controller.user_setting);
 
 router.get('/logout', ensureAuthenticated, user_controller.user_logout);
+
+// Access Control
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        req.flash('error_msg', 'Please login');
+        res.redirect('/users/login');
+    }
+}
 
 module.exports = router;
