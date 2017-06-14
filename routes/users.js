@@ -86,7 +86,16 @@ router.get('/setting', ensureAuthenticated, function(req, res) {
 });
 
 router.post('/setting', function(req, res) {
-    console.log(req.query);
+    User.findOne({ username: req.user.username }, function(err, result) {
+        if (req.query.Action === 'changeEmail') {
+            if (req.body.old_password === '') {
+
+            }
+        }
+        if (req.query.Action === 'changePassword') {
+
+        }
+    });
 });
 
 router.get('/logout', ensureAuthenticated, function(req, res) {

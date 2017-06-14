@@ -15,7 +15,7 @@
                 <div class="col-lg-12 ">
                     <% include partials/flash-msgs %>
                     <h3 class="form-header">Change Email</h3>
-                    <form method="post" action="/users/setting?email=true">
+                    <form method="post" action="/users/setting?Action=changeEmail">
                         <div class="form-group">
                             <label>Old Email</label>
                             <input type="text" class="form-control" placeholder="Old Email" name="old_email">
@@ -30,9 +30,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 change-password-container">
-                    <% include partials/flash-msgs %>
                     <h3 class="form-header">Change Email</h3>
-                    <form method="post" action="/users/setting?password=true">
+                    <form method="post" action="/users/setting?Action=changePassword">
                         <div class="form-group">
                             <label>Old Password</label>
                             <input type="text" class="form-control" placeholder="Old Password" name="old_password">
